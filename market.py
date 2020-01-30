@@ -311,25 +311,21 @@ print ("\n\t" + symbol + "\t| \tPercentage of Change: %", percentchange, "\n")
 
 
 print ("\n\n\n\t\tRecent " + companyName + " News \n\n")
+for item in respjson["news"]:
+ source = item["source"]
+ print ("\tFrom: " + source)
+ newsdate = item["datetime"]
+ newdate = newsdate / 1000.0
+ newerdate = datetime.datetime.fromtimestamp(newdate).strftime('%Y-%m-%d')
+ headline = item["headline"]
+ print ("\tDate : " + newerdate)
+ print ("\tHeadline: " + headline + "\n")
+ summary = item["summary"]
+ print ("\tSummary: " + summary + "\n")
+ newsurl = item["url"]
+ print ("\tYou can find more information at: " + url)
 
-source = (respjson["news"][0]["source"])
-print ("\tFrom: " + source)
-
-newsdate = (respjson["news"][0]["datetime"])
-newdate = newsdate / 1000.0
-newerdate = datetime.datetime.fromtimestamp(newdate).strftime('%Y-%m-%d')
-headline = (respjson["news"][0]["headline"])
-print (Fore.RED + "\tDate : {Style_RESET_ALL}" + newerdate)
-
-print (Fore.RED + "\tHeadline: " + headline + "\n")
-
-summary = (respjson["news"][0]["summary"])
-print (Fore.RED + "\tSummary: " + summary + "\n")
-
-newsurl = (respjson["news"][0]["url"])
-print (Fore.RED + "\tYou can find more information at: " + url)
-
-print ("\n\n\n\n")
+ print ("\n\n\n\n")
 
 #############################################################Test stuff below here#############################################
 
